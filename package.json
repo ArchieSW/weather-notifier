@@ -1,0 +1,15 @@
+{
+  "name": "weather-notifier",
+  "version": "0.0.1",
+  "description": "This is my homework for lad backend meetup.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kutuzov Dmitry",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "telegraf": "^4.7.0"
+  }
+}
