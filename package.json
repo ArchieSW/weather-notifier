@@ -4,13 +4,23 @@
   "description": "This is my homework for lad backend meetup.",
   "main": "app.js",
   "scripts": {
-      "start" : "node app.js"
+    "start": "node app.js"
   },
   "author": "Kutuzov Dmitry",
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
     "axios": "^0.26.0",
+    "mongoose": "^6.2.4",
     "telegraf": "^4.7.0"
   },
-  "repository": "github:ArchieSW/weather-notifier.git"
+  "repository": "github:ArchieSW/weather-notifier.git",
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0"
+  },
+  "type": "module"
 }
