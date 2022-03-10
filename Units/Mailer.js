@@ -1,11 +1,20 @@
 export default class Mailer {
   constructor() {
-    this._CityList = [];
+    this.CityList = [];
   }
 
-  static async launch() { }
+  launch() {
+    const mailingDate = new Date();
+    mailingDate.setDate(new Date().getDate() + 1);
+    mailingDate.setHours(7);
+    setTimeout(mailingDate.now() - new Date().now());
+    setInterval(() => {
+      this.UpdateList();
+      this.SendDistribution();
+    }, 24 * 3600 * 1000);
+  }
 
-  static UpdateList(list) { }
+  UpdateList() { }
 
-  static SendDistribution() { }
+  SendDistribution() { }
 }
