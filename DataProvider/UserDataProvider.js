@@ -5,20 +5,22 @@ const UserSchema = new mongoose.Schema({
   cities: [String],
 });
 
-export default class UserDataProvider {
-  static _User = mongoose.model('User', UserSchema);
+export class UserDataProvider {
+  constructor() {
+    this._User = mongoose.model('User', UserSchema);
+  }
 
-  static AddUser(tgId) {
+  AddUser(tgId) {
     const newUser = new this._User({ tg_id: tgId, cities: [] });
     newUser.save();
   };
 
-  static AddUserAndCity(tgId, city) {
+  AddUserAndCity(tgId, city) {
     const newUser = new this._User({ tg_id: tgId, cities: [city] });
     newUser.save();
   };
 
-  static async AddCityToUser(tgId, city) {
+  async AddCityToUser(tgId, city) {
     const user = await this._User.findOne({ tg_id: tgId });
     if (user.cities.indexOf(city) === -1) {
       user.cities.push(city);
@@ -26,19 +28,39 @@ export default class UserDataProvider {
     }
   };
 
-  static async DeleteUser (tgId) {
+  async DeleteUser (tgId) {
     await this._User.deleteOne({ tg_id: tgId });
   };
 
-  static async Init (MDB_URL) {
-    await mongoose.connect(MDB_URL, { useNewUrlParser: true }).catch((err) => console.error(err));
+  Init (MDB_URL) {
+    mongoose.connect(MDB_URL, { useNewUrlParser: true }).catch((err) => console.error(err));
   };
 
-  static async GetAllUsers () {
+  async GetAllUsers () {
     return await this._User.find({});
   }
 
-  static async GetUserById (tgId) {
+  async GetUserById (tgId) {
     return await this._User.findOne({ tg_id: tgId });
+  }
+
+  async GetUsersByCity(city) {
+    return await this._User.find({ cities: city });
+  }
+
+  async GetAllCities() {
+    const users = await this.GetAllUsers();
+    console.log('Users:');
+    console.log(users);
+    const cities = new Set();
+    users.map((user) => {
+      user.cities.map((city) => {
+        cities.add(city);
+      });
+    });
+    console.log('Cities:');
+    console.log(Array.from(cities));
+
+    return Array.from(cities);
   }
 };
