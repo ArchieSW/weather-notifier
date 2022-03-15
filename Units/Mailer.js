@@ -1,6 +1,7 @@
 import { WeatherDataProvider } from "../DataProvider/WeatherDataProvider.js";
 import { UserDataProvider } from "../DataProvider/UserDataProvider.js";
 import { OW_TOKEN } from "../secret_keys.js";
+import GetMessageText from "./MessageCreator.js";
 
 const WeatherDP = new WeatherDataProvider();
 WeatherDP.Init(OW_TOKEN);
@@ -36,7 +37,7 @@ export default class Mailer {
     this.CityList.map(async (city) => {
       const weatherData = await WeatherDP.GetWeatherData(city);
       const users = await UserDP.GetUsersByCity(city);
-      users.map((user) => this.bot.telegram.sendMessage(user.tg_id, `Temperature in ${city}: ${weatherData.temp}℃\nFeels like: ${weatherData.feels_like}℃`));
+      users.map((user) => this.bot.telegram.sendMessage(user.tg_id, GetMessageText(weatherData, city)));
     });
   }
 }
