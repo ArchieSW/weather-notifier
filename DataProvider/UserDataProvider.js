@@ -50,16 +50,12 @@ export class UserDataProvider {
 
   async GetAllCities() {
     const users = await this.GetAllUsers();
-    console.log('Users:');
-    console.log(users);
     const cities = new Set();
     users.map((user) => {
       user.cities.map((city) => {
         cities.add(city);
       });
     });
-    console.log('Cities:');
-    console.log(Array.from(cities));
 
     return Array.from(cities);
   }
