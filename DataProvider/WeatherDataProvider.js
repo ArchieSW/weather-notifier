@@ -22,6 +22,6 @@ export class WeatherDataProvider {
       console.error(err);
     });
 
-    return res.data.main;
+    return res.data;
   }
 }
