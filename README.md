@@ -5,7 +5,7 @@
 
 ## 📋 Description
 
-This is my homework for backend meetup by lad.
+This is my homework for backend meetup by lad. This bot will notify you every morning at 06:00 Moscow time about the weather in your cities. In addition using this bot you can get weather information at any time.
 
 ## :muscle: Usage
 
