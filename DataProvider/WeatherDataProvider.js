@@ -19,7 +19,14 @@ export class WeatherDataProvider {
         units: 'metric',
       },
     }).catch((err) => {
-      console.error(err);
+      const errorObject = {
+        'data' : {
+          'main' : { temp : 'infinity ' },
+          'weather' : [ { 'description' : 'Here is really hot, I think...', 'icon' : '01d' } ]
+        }
+      };
+
+      return errorObject;
     });
 
     return res.data;
